@@ -26,19 +26,16 @@ Written from scratch:
   rewards advanced pawns), interpolated by remaining material
 - Deterministic fixed node budget of 75,000 nodes per move (no
   wall-clock dependence); worst measured move time locally was about
-  3.5 s on a complex middlegame position
+  5 s on a complex middlegame position under shared-CPU load
 
 ## Local validation
 
 - Move generation verified by perft: startpos perft(3)=8,902 and
-  perft(4)=197,281; kiwipete perft(3)=97,862; plus three further
-  standard positions covering en passant, pins and promotions, all
-  exact. Make/unmake state restoration checked over random games.
-- Head-to-head against this author's previous entry (same protocol,
-  book openings from the competition kit, both colours): at equal
-  20,000-node budgets the new engine scored 8 wins, 1 draw, 3 losses
-  in 12 games; at the real budgets (75,000 vs the previous entry's
-  60,000 nodes) it scored 15 wins, 3 draws, 6 losses in 24 games.
+  perft(4)=197,281; kiwipete perft(3)=97,862, all exact. Make/unmake
+  state restoration (hash and both tapered score sums) checked over
+  the full perft traversals.
+- Determinism checked: the same position produces the same move
+  across fresh loads on test positions including kiwipete.
 
 ## How it runs
 
